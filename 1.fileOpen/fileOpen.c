@@ -8,8 +8,8 @@ int write_to_file(void){
                 perror("fopen error\n"); //표준에러 메세지 출력
                 return -1;
         }
-        fputs("hello world..",fp);
-
+        fputs("hello world",fp);
+        fclose(fp);
         return 0;
         
 }
@@ -22,7 +22,7 @@ fopen - FILE *fopen(const char* pathname, const char* mode)
 */
 
 int read_from_file(void){
-    FILE* fp;
+    FILE* fp=NULL;
     char buf[1024];
     fp=fopen("dummy","r");
     if (fp==NULL){
@@ -31,8 +31,8 @@ int read_from_file(void){
     }
     memset(buf,0,sizeof(buf));
     fgets(buf,sizeof(buf),fp);
+    printf("output = %s\n",buf);
     fclose(fp);
-    printf("%s\n",buf);
     return 0;
 }
 

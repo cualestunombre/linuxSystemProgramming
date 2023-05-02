@@ -9,7 +9,7 @@ struct person{
 };
 
 static int write_to_file(void){
-        FILE* fp=NULL:
+        FILE* fp=NULL;
         struct person kim = {
                 .name="kim",
                 .age=30
@@ -60,7 +60,7 @@ err:
 
 int main(int agrc, char** argv){
     write_to_file();
-    read_from_file;
+    read_from_file();
     return 0;
 }
 

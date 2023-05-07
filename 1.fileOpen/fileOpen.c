@@ -35,7 +35,12 @@ int read_from_file(void){
     fclose(fp);
     return 0;
 }
-
+/*
+fgets - char* fgets(char*s, int size, FILE* stream);
+개행문자나 파일의 끝까지 문자열을 읽어 옴
+성공시 캐릭터 포인터 반환
+실패시 NULL 반환
+*/
 
 int main(int argc, char** argv){
     write_to_file();

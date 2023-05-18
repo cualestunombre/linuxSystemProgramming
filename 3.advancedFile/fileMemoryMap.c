@@ -31,9 +31,6 @@ static int map_file(int descriptor){
     printf("%s %d",temp->name,temp->age);
     temp = (struct person*)(addr+24);
     printf("%s %d",temp->name,temp->age);
-
-
-
     munmap(addr,sizeof(struct person)*2);
     close(descriptor);
     

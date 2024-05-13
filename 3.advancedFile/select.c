@@ -88,9 +88,9 @@ int main(int argc, char**argv){
                  		 }
 			}else if(FD_ISSET(STDIN_FILENO,&fds)){
 				memset(buf,0,sizeof(buf));
-				ret = read(fd,buf,sizeof(buf));
+				ret = read(STDIN_FILENO,buf,sizeof(buf));
 				if (ret == -1){
-					printf("read(_ fail\n");
+					printf("read() fail\n");
 					break;
 				}
 				printf("user input [%s]\n",buf);

@@ -15,12 +15,13 @@ static int byte_write(){
 
     int fd;
     fd = open("dummy",O_RDWR|O_CREAT|O_TRUNC,0777);
+    
     if(fd==-1){
         perror("file open failed");
         return -1;
     }
+
     write(fd,parr,sizeof(parr));
-   
     return fd;
 }
 static int map_file(int descriptor){

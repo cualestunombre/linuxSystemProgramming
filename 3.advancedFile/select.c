@@ -38,7 +38,6 @@ int main(int argc, char**argv){
         }
 	
 
-	STDIN_FILENO
 
 
 
@@ -65,11 +64,16 @@ int main(int argc, char**argv){
 			goto err;
 		}
 		else if (ret == 0){
-			printf("select() timeout occured\n");
+			printf("select() timeout occurred\n");
 			break;
 		}else if (ret > 0){
 			if (FD_ISSET(fd, &fds)){
-				event = (struct intify_event *)buf;
+				ret = read(fd,buf,sizeof(buf));
+				if (ret == -1){
+					printf("read() fail\n");
+					break;
+				}
+				event = (struct inotify_event *)buf;
                   		while( ret > 0){
                           
                           		if (event -> mask & IN_CREATE){
@@ -83,10 +87,16 @@ int main(int argc, char**argv){
   
                  		 }
 			}else if(FD_ISSET(STDIN_FILENO,&fds)){
-				
+				memset(buf,0,sizeof(buf));
+				ret = read(fd,buf,sizeof(buf));
+				if (ret == -1){
+					printf("read(_ fail\n");
+					break;
+				}
+				printf("user input [%s]\n",buf);
 			}
 		}
-		event = (struct intify_event *)buf;;
+		
 
 	}
 	close(wd1);

@@ -3,7 +3,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
+// 파일 컨트롤 
 #include <errno.h>
+
 /*
 기본적으로 세개의 fd가 열린채로 시작함
 0 : stdin
@@ -40,8 +42,11 @@ int main(int argc,char** argv){
         return -1;
     }
 
+    // non-block 설정, flag를 통해서 현재 설정값 가져옴
     fcntl(fd,F_SETFL,flag | O_NONBLOCK);
+    memset(buf,0,sizeof(buf));
     ret = read(fd,buf,sizeof(buf)-1);
+    printf("ret size:%d\n",ret);
     printf("%s\n",buf);
     
 
@@ -50,8 +55,8 @@ int main(int argc,char** argv){
     */
     while((ret=read(fd,buf,sizeof(buf)))!=-1){
     }
-    printf("%s\n",strerror(errno));
 
+    perror("error");
 
 
     return 0;

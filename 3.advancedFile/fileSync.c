@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <unistd.h>
+// unix 기반 posix call
+
 #include <string.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+//파일 제어 함수 및 파일 디스크립터 관련 상수를 정의
 #include <errno.h>
+
+
 int openAndgetLockForParent(char* target) {
     int fd;//파일 디스크립터
     int lock;

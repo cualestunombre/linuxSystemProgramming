@@ -82,7 +82,7 @@ int main(int argc, char**argv){
 			printf("epoll_Wait() timeout occurred\n");
 			break;
 		}else if (ret > 0){
-			if (event.data.fd == fd){
+			if (epvent.data.fd == fd){
 				ret = read(fd,buf,sizeof(buf));
 				if (ret == -1){
 					printf("read() fail\n");
@@ -101,7 +101,7 @@ int main(int argc, char**argv){
                           		ret -= (sizeof(struct inotify_event) + event->len);
   
                  		 }
-			}else if(event.data.fd == STDIN_FILENO){
+			}else if(epvent.data.fd == STDIN_FILENO){
 				memset(buf,0,sizeof(buf));
 				ret = read(STDIN_FILENO,buf,sizeof(buf));
 				if (ret == -1){
